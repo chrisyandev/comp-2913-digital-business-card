@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import CreateCard from "./CreateCard";
+import "./styles.css";
+import { useState } from "react";
+import { Router, Outlet, ReactLocation } from "react-location";
+import CardShowCase from "./CardShowcase";
 
-function App() {
+const location = new ReactLocation();
+
+export default function App() {
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    aboutMe: "",
+    githubURL: "",
+    twitterURL: "",
+    favouriteBooks: "",
+    favouriteArtists: "",
+    HTML: false,
+    CSS: false,
+    JS: false,
+    Git: false,
+    React: false,
+    NodeJS: false
+  });
+
+  const routes = [
+    {
+      path: "/",
+      element: <CreateCard formData={formData} setFormData={setFormData} />
+    },
+    {
+      path: "showcase",
+      element: <CardShowCase formData={formData} />
+    }
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router routes={routes} location={location}>
+      <div>
+        <Outlet />
+      </div>
+    </Router>
   );
 }
-
-export default App;
