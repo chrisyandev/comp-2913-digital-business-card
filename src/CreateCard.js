@@ -1,8 +1,6 @@
 export default function CreateCard({ formData, setFormData }) {
 
-    console.log(formData);
-
-    const handleChange = e => {
+    const handleCheckbox = e => {
         let isChecked = e.target.checked;
         console.log(e.target.value);
         setFormData({ ...formData, [e.target.value]: isChecked });
@@ -16,12 +14,12 @@ export default function CreateCard({ formData, setFormData }) {
 
             <fieldset>
                 <legend>Technologies you Know:</legend>
-                <label><input type="checkbox" value="HTML" onChange={handleChange}/>HTML</label>
-                <label><input type="checkbox" value="CSS" onChange={handleChange}/>CSS</label>
-                <label><input type="checkbox" value="JS" onChange={handleChange}/>JS</label>
-                <label><input type="checkbox" value="Git" onChange={handleChange}/>Git</label>
-                <label><input type="checkbox" value="React" onChange={handleChange}/>React</label>
-                <label><input type="checkbox" value="NodeJS" onChange={handleChange}/>Node.js</label>
+                <label><input type="checkbox" value="HTML" onChange={handleCheckbox}/>HTML</label>
+                <label><input type="checkbox" value="CSS" onChange={handleCheckbox}/>CSS</label>
+                <label><input type="checkbox" value="JS" onChange={handleCheckbox}/>JS</label>
+                <label><input type="checkbox" value="Git" onChange={handleCheckbox}/>Git</label>
+                <label><input type="checkbox" value="React" onChange={handleCheckbox}/>React</label>
+                <label><input type="checkbox" value="NodeJS" onChange={handleCheckbox}/>Node.js</label>
             </fieldset>
 
             <input type="text" placeholder="Github URL" onChange={e => setFormData({ ...formData, githubURL: e.target.value })}/>

@@ -1,7 +1,8 @@
-import CreateCard from "./CreateCard";
 import "./styles.css";
 import { useState } from "react";
 import { Router, Outlet, ReactLocation } from "react-location";
+
+import CreateCard from "./CreateCard";
 import CardShowCase from "./CardShowcase";
 
 const location = new ReactLocation();
@@ -23,13 +24,15 @@ export default function App() {
     NodeJS: false
   });
 
+  console.log(formData);
+
   const routes = [
     {
       path: "/",
       element: <CreateCard formData={formData} setFormData={setFormData} />
     },
     {
-      path: "showcase",
+      path: "/showcase",
       element: <CardShowCase formData={formData} />
     }
   ];
