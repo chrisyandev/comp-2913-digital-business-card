@@ -1,9 +1,10 @@
 import { useNavigate } from "@tanstack/react-location";
-import { useFormData } from "./App";
+import { useFormData, useUsers } from "./App";
 
 export default function CreateCard() {
   const navigate = useNavigate();
   const { formData, setFormData } = useFormData();
+  const { users, setUsers } = useUsers();
 
   const handleChange = (e) => {
     let isChecked = e.target.checked;
@@ -12,6 +13,8 @@ export default function CreateCard() {
 
   const handleClick = (e) => {
     e.preventDefault(); // DON'T REFRESH THE PAGE
+    const newUser = {...formData, id: Date.now()};
+    setUsers(oldArray => [...oldArray, newUser]);
     navigate({ to: "showcase", replace: true, search: formData });
   };
 

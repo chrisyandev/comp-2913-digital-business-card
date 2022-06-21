@@ -5,11 +5,17 @@ import { createContext, useContext, useState } from "react";
 import CardShowcase from "./CardShowcase";
 
 const FormDataContext = createContext();
+const UsersContext = createContext();
 
 export const useFormData = () => {
   const context = useContext(FormDataContext);
   return context;
 };
+
+export const useUsers = () => {
+  const context = useContext(UsersContext);
+  return context;
+}
 
 const location = new ReactLocation();
 
@@ -28,6 +34,8 @@ export default function App() {
     NodeJS: false
   });
 
+  const [users, setUsers] = useState([]);
+
   const routes = [
     {
       path: "/",
@@ -41,9 +49,11 @@ export default function App() {
 
   return (
     <Router routes={routes} location={location}>
-      <FormDataContext.Provider value={{ formData, setFormData }}>
-        <Outlet />
-      </FormDataContext.Provider>
+      <UsersContext.Provider value={{ users, setUsers }}>
+        <FormDataContext.Provider value={{ formData, setFormData }}>
+          <Outlet />
+        </FormDataContext.Provider>
+      </UsersContext.Provider>
     </Router>
   );
 }

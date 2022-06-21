@@ -41,7 +41,7 @@ export default function CardShowCase() {
                       <div class="mini-cards">
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://github.com/adhanji8"
+                          href={search.githubURL}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -49,7 +49,7 @@ export default function CardShowCase() {
                         </a>
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://www.twitter.com/bcit"
+                          href={search.twitterURL}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
