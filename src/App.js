@@ -1,21 +1,25 @@
 import "./styles.css";
-import { useState } from "react";
-import { Router, Outlet, ReactLocation } from "react-location";
-
+import { Router, Outlet, ReactLocation } from "@tanstack/react-location";
 import CreateCard from "./CreateCard";
-import CardShowCase from "./CardShowcase";
+import { createContext, useContext, useState } from "react";
+import CardShowcase from "./CardShowcase";
+
+const FormDataContext = createContext();
+
+export const useFormData = () => {
+  const context = useContext(FormDataContext);
+  return context;
+};
 
 const location = new ReactLocation();
 
 export default function App() {
-
   const [formData, setFormData] = useState({
     fullName: "",
     aboutMe: "",
     githubURL: "",
     twitterURL: "",
     favouriteBooks: "",
-    favouriteArtists: "",
     HTML: false,
     CSS: false,
     JS: false,
@@ -24,24 +28,22 @@ export default function App() {
     NodeJS: false
   });
 
-  console.log(formData);
-
   const routes = [
     {
       path: "/",
-      element: <CreateCard formData={formData} setFormData={setFormData} />
+      element: <CreateCard />
     },
     {
-      path: "/showcase",
-      element: <CardShowCase formData={formData} />
+      path: "showcase",
+      element: <CardShowcase />
     }
   ];
 
   return (
     <Router routes={routes} location={location}>
-      <div>
+      <FormDataContext.Provider value={{ formData, setFormData }}>
         <Outlet />
-      </div>
+      </FormDataContext.Provider>
     </Router>
   );
 }

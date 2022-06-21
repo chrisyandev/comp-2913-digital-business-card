@@ -1,7 +1,11 @@
+import { useSearch } from "@tanstack/react-location";
 import "./showcase.css";
-export default function CardShowCase({ formData }) {
+
+export default function CardShowCase() {
+  const search = useSearch();
   return (
     <div className="pageBody">
+      <p>Hey it's {JSON.stringify(search)} </p>
       <main class="has-dflex-center">
         <section>
           <div class="lx-container-85">
@@ -18,8 +22,8 @@ export default function CardShowCase({ formData }) {
                       </div>
                       <div class="infos">
                         <span>
-                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; ARMAAN
-                          DHANJI
+                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; Armaan
+                          Dhanji
                         </span>
                         <span>
                           <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
@@ -35,7 +39,7 @@ export default function CardShowCase({ formData }) {
                       <div class="mini-cards">
                         <a
                           class="has-dflex-center bs-md"
-                          href="https://github.com/"
+                          href="https://github.com/adhanji8"
                           target="_blank"
                           rel="noopener noreferrer"
                         >

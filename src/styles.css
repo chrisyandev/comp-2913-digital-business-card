@@ -1,4 +1,4 @@
-/* :root {
+:root {
   font-size: 16px;
   line-height: 1.5;
   --primary-blue: #233975;
@@ -102,18 +102,4 @@ form input[type="checkbox"] {
 .myLabel {
   display: inline-block;
   width: 213px;
-} */
-
-h1 {
-  color: green;
-}
-
-input[type=checkbox] {
-  vertical-align: middle;
-  position: relative;
-  bottom: 1px;
-}
-
-label {
-  display: block;
 }
