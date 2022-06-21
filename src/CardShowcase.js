@@ -2,7 +2,10 @@ import { useSearch } from "@tanstack/react-location";
 import "./showcase.css";
 
 export default function CardShowCase() {
+
   const search = useSearch();
+  const favouriteBooks = search.favouriteBooks.split(",");
+
   return (
     <div className="pageBody">
       <p>Hey it's {JSON.stringify(search)} </p>
@@ -22,8 +25,7 @@ export default function CardShowCase() {
                       </div>
                       <div class="infos">
                         <span>
-                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; Armaan
-                          Dhanji
+                          <i class="fas fa-user-circle"></i>&nbsp;&nbsp; {search.fullName}
                         </span>
                         <span>
                           <i class="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
@@ -35,7 +37,7 @@ export default function CardShowCase() {
 
                   <div class="lx-card">
                     <div class="lx-row">
-                      <h1 class="title">Connect with Armaan</h1>
+                      <h1 class="title">Connect with {String(search.fullName).split(' ')[0]}</h1>
                       <div class="mini-cards">
                         <a
                           class="has-dflex-center bs-md"
@@ -62,8 +64,7 @@ export default function CardShowCase() {
                 <div class="lx-row">
                   <div class="lx-row lx-card">
                     <h1 class="title">
-                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to
-                      Armaan's corner of the Internet
+                      <i class="fas fa-info-circle"></i>&nbsp;Welcome to&nbsp;{String(search.fullName).split(' ')[0]}'s corner of the Internet
                     </h1>
                   </div>
                   <div class="lx-row lx-card">
@@ -72,14 +73,10 @@ export default function CardShowCase() {
                     </h1>
                     <div class="text">
                       <p>
-                        Hi, my name is&nbsp;<b>Armaan Dhanji</b>, but I'm better
-                        known by my nickname&nbsp;<i>@armaand</i>, and I'm a
-                        teacher in the School of Computing at BCIT.
+                        Hi, my name is&nbsp;<b>{search.fullName}</b>.
                       </p>
                       <p>
-                        I&nbsp;&nbsp;<i class="fas fa-heart"></i>&nbsp; to code
-                        full-stack projects, always looking for innovative ways
-                        to write code that follows practices!
+                        {search.aboutMe}
                       </p>
                     </div>
                   </div>
@@ -88,34 +85,22 @@ export default function CardShowCase() {
                       <i class="fas fa-terminal"></i>&nbsp;Technologies
                     </h1>
                     <div class="mini-cards">
-                      <span class="has-dflex-center bs-md" title="CSS">
+                      <span class={search.CSS ? "has-dflex-center bs-md" : "no-display"} title="CSS">
                         <i class="fab fa-css3-alt"></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="HTML">
+                      <span class={search.HTML ? "has-dflex-center bs-md" : "no-display"} title="HTML">
                         <i class="fab fa-html5"></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="JS">
+                      <span class={search.JS ? "has-dflex-center bs-md" : "no-display"} title="JS">
                         <i class="fab fa-js"></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Sass">
-                        <i class="fab fa-sass"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="Git">
+                      <span class={search.Git ? "has-dflex-center bs-md" : "no-display"} title="Git">
                         <i class="fab fa-git-alt"></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="Gulp">
-                        <i class="fab fa-gulp"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="Node JS">
+                      <span class={search.NodeJS ? "has-dflex-center bs-md" : "no-display"} title="Node JS">
                         <i class="fab fa-node-js"></i>
                       </span>
-                      <span class="has-dflex-center bs-md" title="NPM">
-                        <i class="fab fa-npm"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="PHP">
-                        <i class="fab fa-php"></i>
-                      </span>
-                      <span class="has-dflex-center bs-md" title="React">
+                      <span class={search.React ? "has-dflex-center bs-md" : "no-display"} title="React">
                         <i class="fab fa-react"></i>
                       </span>
                     </div>
@@ -126,33 +111,14 @@ export default function CardShowCase() {
                     </h1>
                     <div class="text">
                       <ol>
-                        <li>
-                          <p>
-                            <b>The Lord of the Rings</b>&nbsp;- J. R. R. Tolkien
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Foundation series</b>&nbsp;- Isaac Asimov
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Cracking the Coding Interview</b>&nbsp;- Gayle
-                            Laakmann
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>Clean Code</b>&nbsp;- Rob Martin
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <b>A Brief History of Time</b>&nbsp;- Stephen
-                            Hawking
-                          </p>
-                        </li>
+                        {favouriteBooks.map((book, index) => {
+                          return(
+                          <li key={book + index}>
+                            <p>
+                              <b>{book}</b>
+                            </p>
+                          </li>);
+                        })}
                       </ol>
                     </div>
                   </div>
